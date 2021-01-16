@@ -7,6 +7,7 @@ const {
 const {
     findOneProduct,
     createProduct,
+    updateProduct,
 } = require("../data/data");
 
 const addProduct = async data => {
@@ -43,6 +44,50 @@ const addProduct = async data => {
     }
 };
 
+const editProduct = async data => {
+    const {id, name, price, imageUrl} = data;
+
+    const validUpdatedData = removeNoneObject({name, price, imageUrl});
+    if (Object.keys(validUpdatedData).length == 0) {
+        return {
+            message: "Invalid Arguments"
+        }
+    }
+
+    try {
+
+        // Note:
+        // not checking for product(to be updated) to exist
+        // because FE won't have the id of the product
+        // if it doesn't exist
+
+        if (name) {
+            const productDetails = await findOneProduct({name});
+            if (productDetails) {
+                return {
+                    message: `Product updation failed. Product 
+                    with  same name already exists!`
+                };
+            }
+        }
+
+        await updateProduct({
+            id,
+            data: {...validUpdatedData}
+        });
+
+        return {
+            message: "Product updated successfully!",
+        };
+
+    } catch(err) {
+        return {
+            message: "Something went wrong!",
+        };
+    }
+};
+
 modules.exports = {
-    addProduct
+    addProduct,
+    editProduct
 };

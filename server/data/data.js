@@ -9,6 +9,16 @@ const createProduct = async args => {
     await getDb().collection("product").insertOne({...args});
 }
 
+const updateProduct = async args => {
+    const {id, data} = args;
+
+    await getDb().collection("product").updateOne({
+        _id: ObjectId(id)
+    }, {
+        "$set": {...data}
+    });
+}
+
 module.exports = {
     findOneProduct,
     createProduct,
