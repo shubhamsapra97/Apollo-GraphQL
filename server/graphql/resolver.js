@@ -8,7 +8,8 @@ const {
     findOneProduct,
     createProduct,
     updateProduct,
-    removeProduct
+    removeProduct,
+    getProductsData
 } = require("../data/data");
 
 const addProduct = async data => {
@@ -113,7 +114,25 @@ const deleteProduct = async data => {
     }
 };
 
+const getProducts = async data => {
+    let {sortBy, offset, limit} = data;
+
+    if (!limit) limit = 5;
+    if (!offset) offset = 0;
+    if (!sortBy) sortBy = "name";
+
+    sortBy = sortBy.toLowerCase();
+    try {
+        return await getProductsData({sortBy, offset, limit});
+    } catch(err) {
+        return {
+            message: "Something went wrong!"
+        };
+    }
+};
+
 modules.exports = {
+    getProducts,
     addProduct,
     editProduct,
     deleteProduct

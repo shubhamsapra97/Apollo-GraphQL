@@ -1,12 +1,13 @@
 const {
     addProduct,
     editProduct,
-    deleteProduct
+    deleteProduct,
+    getProducts,
 } = require("./resolver");
 
 const resolvers = {
     Query: {
-
+        getProducts: (parent, args) => getProducts(args),
     },
     Mutation: {
         addProduct: (parent, args) => addProduct(args),

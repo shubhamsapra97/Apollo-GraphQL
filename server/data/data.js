@@ -27,9 +27,22 @@ const removeProduct = async args => {
     });
 }
 
+const getProductsData = async args => {
+    const {sortBy, limit, offset} = args;
+
+    return await getDb().collection("product")
+        .find()
+        .sort({[sortBy]: 1})
+        .skip(offset)
+        .limit(limit)
+        .toArray();
+
+}
+
 module.exports = {
     findOneProduct,
     createProduct,
     updateProduct,
-    removeProduct
+    removeProduct,
+    getProductsData
 };
