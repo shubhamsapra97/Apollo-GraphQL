@@ -3,7 +3,7 @@ const url = "mongodb://localhost:27017";
 
 let _db;
 
-const connectToServer = () => {
+const connectToMongoServer = () => {
   MongoClient.connect( url,  { useUnifiedTopology: true }, function( err, database ) {
     if (err) throw err;
     _db  = database.db("fadoni_tech_db");
@@ -17,5 +17,5 @@ const getDb = () => {
 
 module.exports = {
   getDb,
-  connectToServer
+  connectToMongoServer
 };

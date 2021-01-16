@@ -1,8 +1,8 @@
 const { ApolloServer } = require('apollo-server');
 const {apolloData} = require("./graphql/core");
-const {connectToServer} = require('./utils/mongoUtil');
+const {connectToMongoServer} = require('./utils/mongoUtil');
 
-connectToServer();
+connectToMongoServer();
 
 const server = new ApolloServer({ ...apolloData });
 server.listen().then(({ url }) => {
