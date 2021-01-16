@@ -131,7 +131,7 @@ const getProducts = async data => {
     }
 };
 
-modules.exports = {
+module.exports = {
     getProducts,
     addProduct,
     editProduct,
