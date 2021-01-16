@@ -19,8 +19,17 @@ const updateProduct = async args => {
     });
 }
 
+const removeProduct = async args => {
+    const {id} = args;
+
+    await getDb().collection("product").deleteOne({
+        _id: ObjectId(id)
+    });
+}
+
 module.exports = {
     findOneProduct,
     createProduct,
     updateProduct,
+    removeProduct
 };

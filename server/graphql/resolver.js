@@ -8,6 +8,7 @@ const {
     findOneProduct,
     createProduct,
     updateProduct,
+    removeProduct
 } = require("../data/data");
 
 const addProduct = async data => {
@@ -87,7 +88,33 @@ const editProduct = async data => {
     }
 };
 
+const deleteProduct = async data => {
+    const {id} = data;
+
+    try {
+
+        const productDetails = await findOneProduct({_id: ObjectId(id)});
+        if (!productDetails) {
+            return {
+                message: "Product not found!"
+            };
+        }
+
+        await removeProduct({id});
+
+        return {
+            message: "Product deleted successfully!",
+        };
+
+    } catch(err) {
+        return {
+            message: "Something went wrong!",
+        };
+    }
+};
+
 modules.exports = {
     addProduct,
-    editProduct
+    editProduct,
+    deleteProduct
 };
