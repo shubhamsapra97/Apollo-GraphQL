@@ -58,10 +58,12 @@ const editProduct = async data => {
 
     try {
 
-        // Note:
-        // not checking for product(to be updated) to exist
-        // because FE won't have the id of the product
-        // if it doesn't exist
+        const productDetails = await findOneProduct({_id: ObjectId(id)});
+        if (!productDetails) {
+            return {
+                message: "Product not found!"
+            };
+        }
 
         if (name) {
             const productDetails = await findOneProduct({name});
