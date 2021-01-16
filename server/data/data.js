@@ -22,4 +22,5 @@ const updateProduct = async args => {
 module.exports = {
     findOneProduct,
     createProduct,
+    updateProduct,
 };
