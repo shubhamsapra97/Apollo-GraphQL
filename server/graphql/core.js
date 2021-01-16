@@ -1,3 +1,4 @@
+const typeDefs = require("./schema");
 const {
     addProduct,
     editProduct,
@@ -16,6 +17,6 @@ const resolvers = {
     }
 };
 
-const apolloData = {resolvers};
+const apolloData = {typeDefs, resolvers};
 
 module.exports = {apolloData};
