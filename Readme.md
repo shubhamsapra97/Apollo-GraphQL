@@ -1,4 +1,4 @@
-# Apollo Graphql APP
+# Product Apollo CRUD
 
 This app contains the basic implementation of Apollo graphql.
 
